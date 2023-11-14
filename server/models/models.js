@@ -71,7 +71,7 @@ Rating.belongsTo(Furniture)
 Furniture.hasMany(BasketFurniture)
 BasketFurniture.belongsTo(Furniture)
 
-Furniture.hasMany(FurnitureInfo)
+Furniture.hasMany(FurnitureInfo, { as: 'info' })
 FurnitureInfo.belongsTo(Furniture)
 
 Type.belongsToMany(Brand, { through: TypeBrand })
