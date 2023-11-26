@@ -19,8 +19,6 @@ class FurnitureContoller {
         img: fileName,
       })
 
-      console.log('furniture: ', furniture)
-
       if (info) {
         info = JSON.parse(info)
         info.forEach((i) =>

@@ -11,7 +11,6 @@ import { setIsAuth } from '../store/userSlice'
 const NavBar = () => {
   const isAuth = useSelector((state) => state.user.isAuth)
   const dispatch = useDispatch()
-  console.log('isAuth ', isAuth)
   return (
     <Navbar bg="dark" data-bs-theme="dark">
       <Container>

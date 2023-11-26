@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Container from 'react-bootstrap/Container'
-import { Form, Card, Button, Row } from 'react-bootstrap'
+import { Form, Card, Button } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
 import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../utils/consts'
 import { useLocation } from 'react-router-dom'

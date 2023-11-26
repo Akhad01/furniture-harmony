@@ -20,6 +20,10 @@ const initialState = {
       id: 2,
       name: 'Kartell',
     },
+    {
+      id: 3,
+      name: 'IKEA',
+    },
   ],
   furnitures: [
     {
@@ -27,30 +31,46 @@ const initialState = {
       name: 'Стул LION',
       price: 100,
       rating: 4,
-      img: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fmiol-mebel.by%2Fstul-ozzy-g062-03-ru&psig=AOvVaw3CJIyyvKgrjkEvVRLbF43r&ust=1701007451836000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPC4-tmo34IDFQAAAAAdAAAAABAE',
+      img: 'https://i4.stat01.com/1/8996/89953788/afacdb/stol-verdi-11.jpg',
     },
     {
       id: 2,
       name: 'Диван Монако',
       price: 500,
       rating: 4,
-      img: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fmiol-mebel.by%2Fstul-ozzy-g062-03-ru&psig=AOvVaw3CJIyyvKgrjkEvVRLbF43r&ust=1701007451836000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPC4-tmo34IDFQAAAAAdAAAAABAE',
+      img: 'https://i4.stat01.com/1/8996/89953788/afacdb/stol-verdi-11.jpg',
     },
     {
       id: 3,
       name: 'Шкаф 4С2Я',
       price: 400,
       rating: 5,
-      img: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fmiol-mebel.by%2Fstul-ozzy-g062-03-ru&psig=AOvVaw3CJIyyvKgrjkEvVRLbF43r&ust=1701007451836000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPC4-tmo34IDFQAAAAAdAAAAABAE',
+      img: 'https://i4.stat01.com/1/8996/89953788/afacdb/stol-verdi-11.jpg',
     },
     {
       id: 4,
       name: 'Стол',
       price: 300,
       rating: 3,
-      img: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fmiol-mebel.by%2Fstul-ozzy-g062-03-ru&psig=AOvVaw3CJIyyvKgrjkEvVRLbF43r&ust=1701007451836000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPC4-tmo34IDFQAAAAAdAAAAABAE',
+      img: 'https://i4.stat01.com/1/8996/89953788/afacdb/stol-verdi-11.jpg',
+    },
+    {
+      id: 5,
+      name: 'Стол',
+      price: 300,
+      rating: 3,
+      img: 'https://i4.stat01.com/1/8996/89953788/afacdb/stol-verdi-11.jpg',
+    },
+    {
+      id: 6,
+      name: 'Стол',
+      price: 300,
+      rating: 3,
+      img: 'https://i4.stat01.com/1/8996/89953788/afacdb/stol-verdi-11.jpg',
     },
   ],
+  selectedType: {},
+  selectedBrand: {},
 }
 
 const furnitureSlice = createSlice({
@@ -66,8 +86,20 @@ const furnitureSlice = createSlice({
     setFurnitures: (state, action) => {
       state.furnitures = action.payload
     },
+    setSelectedType: (state, action) => {
+      state.selectedType = action.payload
+    },
+    setSelectedBrand: (state, action) => {
+      state.selectedBrand = action.payload
+    },
   },
 })
 
-export const { setIsAuth } = furnitureSlice.actions
+export const {
+  setBrands,
+  setFurnitures,
+  setSelectedType,
+  setTypes,
+  setSelectedBrand,
+} = furnitureSlice.actions
 export default furnitureSlice.reducer
