@@ -2,8 +2,6 @@ import { $authHost, $host } from '.'
 
 export const createType = async (type) => {
   const { data } = await $authHost.post('api/type', type)
-  console.log('data', data)
-
   return data
 }
 
@@ -12,8 +10,8 @@ export const fetchTypes = async () => {
   return data
 }
 
-export const createBrand = async (brand) => {
-  const { data } = await $authHost.post('api/brand', brand)
+export const createBrand = async () => {
+  const { data } = await $authHost.post('api/brand')
   return data
 }
 
@@ -24,14 +22,13 @@ export const fetchBrands = async () => {
 
 export const createFurniture = async (furniture) => {
   const { data } = await $authHost.post('api/furniture', furniture)
-  console.log('furniture: ', furniture)
-  console.log('data: ', data)
-
   return data
 }
 
-export const fetchFurnitures = async () => {
-  const { data } = await $host.get('api/furniture')
+export const fetchFurnitures = async (typeId, brandId, page, limit = 5) => {
+  const { data } = await $host.get('api/furniture', {
+    params: { typeId, brandId, page, limit },
+  })
   return data
 }
 

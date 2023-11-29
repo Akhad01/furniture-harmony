@@ -6,6 +6,9 @@ const initialState = {
   furnitures: [],
   selectedType: {},
   selectedBrand: {},
+  page: 1,
+  totalCount: 0,
+  limit: 3,
 }
 
 const furnitureSlice = createSlice({
@@ -22,10 +25,20 @@ const furnitureSlice = createSlice({
       state.furnitures = action.payload
     },
     setSelectedType: (state, action) => {
+      state.page = 1
       state.selectedType = action.payload
     },
     setSelectedBrand: (state, action) => {
+      state.page = 1
       state.selectedBrand = action.payload
+    },
+
+    setPage: (state, action) => {
+      state.page = action.payload
+    },
+
+    setTotalCount: (state, action) => {
+      state.totalCount = action.payload
     },
   },
 })
@@ -36,5 +49,7 @@ export const {
   setSelectedType,
   setTypes,
   setSelectedBrand,
+  setPage,
+  setTotalCount,
 } = furnitureSlice.actions
 export default furnitureSlice.reducer

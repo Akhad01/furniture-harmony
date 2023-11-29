@@ -57,8 +57,6 @@ const CreateFurniture = ({ show, onHide }) => {
     createFurniture(formData).then((data) => onHide())
   }
 
-  console.log('info', info)
-
   return (
     <Modal show={show} onHide={onHide} size="lg" centered>
       <Modal.Header closeButton>

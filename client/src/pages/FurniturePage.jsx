@@ -7,8 +7,6 @@ const FurniturePage = () => {
   const { id } = useParams()
   const [furniture, setFurniture] = useState({ info: [] })
 
-  console.log(id)
-
   useEffect(() => {
     fetchOneFurniture(id).then((data) => setFurniture(data))
   }, [])

@@ -29,7 +29,6 @@ const Auth = () => {
       } else {
         data = await registration(email, password)
       }
-      console.log('data: ', data)
       dispatch(setUser(data))
       dispatch(setIsAuth(true))
       navigate(MAIN_ROUTE)
@@ -41,9 +40,6 @@ const Auth = () => {
   const toggleShowPassword = () => {
     setShowPassword((prevState) => !prevState)
   }
-
-  console.log('aasd')
-
   return (
     <Container
       className="d-flex justify-content-center align-items-center"
