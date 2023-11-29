@@ -8,13 +8,13 @@ const AppRouter = () => {
   const isAuth = useSelector((state) => state.user.isAuth)
   return (
     <Routes>
-      {isAuth
-        ? authRoutes.map(({ path, components }) => (
-            <Route key={path} path={path} element={components()} />
-          ))
-        : publicRoutes.map(({ path, components }) => (
-            <Route key={path} path={path} element={components()} />
-          ))}
+      {isAuth &&
+        authRoutes.map(({ path, components }) => (
+          <Route key={path} path={path} element={components} />
+        ))}
+      {publicRoutes.map(({ path, components }) => (
+        <Route key={path} path={path} element={components} />
+      ))}
       <Route path="*" element={<Main />} />
     </Routes>
   )

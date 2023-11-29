@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  isAuth: true,
+  isAuth: false,
   user: {},
 }
 
@@ -13,10 +13,19 @@ const userSlice = createSlice({
       state.isAuth = action.payload
     },
     setUser: (state, action) => {
-      state.isAuth = action.payload
+      state.user = action.payload
+    },
+    userLoggedOut: (state) => {
+      state.isAuth = false
+      state.user = null
     },
   },
 })
 
-export const { setIsAuth } = userSlice.actions
+export const { setIsAuth, setUser, userLoggedOut } = userSlice.actions
 export default userSlice.reducer
+
+// export const logOut = () => (dispatch) => {
+//   localStorage.removeItem('token')
+//   dispatch(userLoggedOut())
+// }

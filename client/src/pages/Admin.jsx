@@ -2,17 +2,17 @@ import React, { useState } from 'react'
 import { Button, Container } from 'react-bootstrap'
 import CreateType from '../components/modals/CreateType'
 import CreateBrand from '../components/modals/CreateBrand'
-import CreateDevice from '../components/modals/CreateDevice'
+import CreateFurniture from '../components/modals/CreateFurniture'
 
 const Admin = () => {
   const [brandVisible, setBrandVisible] = useState(false)
   const [typeVisible, setTypeVisible] = useState(false)
-  const [deviceVisible, setDeviceVisible] = useState(false)
+  const [furnitureVisible, setFurnitureVisible] = useState(false)
 
   return (
     <Container className="d-flex flex-column">
       <Button
-        onClick={() => setBrandVisible(true)}
+        onClick={() => setTypeVisible(true)}
         variant="outline-dark"
         className="mt-4 p-2"
       >
@@ -26,17 +26,17 @@ const Admin = () => {
         Добавить бренд
       </Button>
       <Button
-        onClick={() => setDeviceVisible(true)}
+        onClick={() => setFurnitureVisible(true)}
         variant="outline-dark"
         className="mt-4 p-2"
       >
         Добавить устройство
       </Button>
-      <CreateType onHide={() => setTypeVisible(false)} show={typeVisible} />
-      <CreateBrand onHide={() => setBrandVisible(false)} show={brandVisible} />
-      <CreateDevice
-        onHide={() => setDeviceVisible(false)}
-        show={deviceVisible}
+      <CreateType show={typeVisible} onHide={() => setTypeVisible(false)} />
+      <CreateBrand show={brandVisible} onHide={() => setBrandVisible(false)} />
+      <CreateFurniture
+        show={furnitureVisible}
+        onHide={() => setFurnitureVisible(false)}
       />
     </Container>
   )

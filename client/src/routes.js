@@ -15,29 +15,29 @@ import {
 export const authRoutes = [
   {
     path: ADMIN_ROUTE,
-    components: Admin,
+    components: <Admin />,
   },
   {
     path: BASKET_ROUTE,
-    components: Basket,
+    components: <Basket />,
   },
 ]
 
 export const publicRoutes = [
   {
     path: MAIN_ROUTE,
-    components: Main,
+    components: <Main />,
   },
   {
     path: LOGIN_ROUTE,
-    components: Auth,
+    components: <Auth />,
   },
   {
     path: REGISTRATION_ROUTE,
-    components: Auth,
+    components: <Auth />,
   },
   {
     path: FURNITURE_ROUTE + '/:id',
-    components: FurniturePage,
+    components: <FurniturePage />,
   },
 ]

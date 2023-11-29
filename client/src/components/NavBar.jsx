@@ -6,12 +6,17 @@ import Nav from 'react-bootstrap/Nav'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { ADMIN_ROUTE, LOGIN_ROUTE, MAIN_ROUTE } from '../utils/consts'
 import Button from 'react-bootstrap/Button'
-import { setIsAuth } from '../store/userSlice'
+import { setIsAuth, setUser, userLoggedOut } from '../store/userSlice'
 
 const NavBar = () => {
+  const dispatch = useDispatch()
   const isAuth = useSelector((state) => state.user.isAuth)
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+
+  const logOut = () => {
+    dispatch(userLoggedOut())
+  }
+
   return (
     <Navbar bg="dark" data-bs-theme="dark">
       <Container>
@@ -29,7 +34,7 @@ const NavBar = () => {
             <Button
               variant="info"
               style={{ marginLeft: 10 }}
-              onClick={() => navigate(LOGIN_ROUTE)}
+              onClick={() => logOut()}
             >
               Выйти
             </Button>
@@ -41,7 +46,7 @@ const NavBar = () => {
             </Button>
             <Button
               variant="outline-info"
-              onClick={() => dispatch(setIsAuth(true))}
+              onClick={() => navigate(LOGIN_ROUTE)}
             >
               Авторизация
             </Button>

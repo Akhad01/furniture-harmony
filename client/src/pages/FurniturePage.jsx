@@ -1,42 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Badge, Col, Container, Image, Row } from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
+import { fetchOneFurniture } from '../http/furnitureApi'
 
 const FurniturePage = () => {
-  const furniture = {
-    id: 6,
-    name: 'Стол',
-    price: 300,
-    rating: 3,
-    img: 'https://i4.stat01.com/1/8996/89953788/afacdb/stol-verdi-11.jpg',
-  }
-  const description = [
-    {
-      id: 1,
-      title: 'sadsdsad',
-      description:
-        'dasdsadsadsd sadsaaaaaaaaaaaaa aaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaa aaaaadsdsad',
-    },
-    {
-      id: 2,
-      title: 'sadsdsad',
-      description: 'dasdsadsadsdsadsdsad',
-    },
-    {
-      id: 3,
-      title: 'sadsdsad',
-      description: 'dasdsadsadsdsadsdsad',
-    },
-    {
-      id: 4,
-      title: 'sadsdsad',
-      description: 'dasdsadsadsdsadsdsad',
-    },
-    {
-      id: 5,
-      title: 'sadsdsad',
-      description: 'dasdsadsadsdsadsdsad',
-    },
-  ]
+  const { id } = useParams()
+  const [furniture, setFurniture] = useState({ info: [] })
+
+  console.log(id)
+
+  useEffect(() => {
+    fetchOneFurniture(id).then((data) => setFurniture(data))
+  }, [])
+
   return (
     <Container className="mt-3">
       <Row className="d-flex align-items-center">
@@ -53,7 +29,7 @@ const FurniturePage = () => {
           </p>
           <div className="d-flex flex-column mt-3">
             <h2>Характеристики</h2>
-            {description.map((des) => (
+            {furniture.info.map((des) => (
               <Row key={des.id}>
                 <div>
                   <span className="fw-bolder">{des.title}:</span>{' '}
@@ -67,7 +43,7 @@ const FurniturePage = () => {
           <div>
             <Image
               style={{ width: '100%', height: '100%' }}
-              src={furniture.img}
+              src={process.env.REACT_APP_API_URL + furniture.img}
             />
           </div>
         </Col>

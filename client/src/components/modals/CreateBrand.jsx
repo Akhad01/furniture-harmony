@@ -1,22 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
+import { createBrand } from '../../http/furnitureApi'
 
 const CreateBrand = ({ show, onHide }) => {
+  const [value, setValue] = useState('')
+
+  const addBrand = () => {
+    createBrand({ name: value }).then((data) => {
+      setValue('')
+      onHide()
+    })
+  }
   return (
-    <Modal show={show} onHide={onHide} size="lg" centered>
+    <Modal show={show} onHide={onHide} centered>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Добавить новый тип
+          Добавить тип
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form.Control placeholder={'Введите название типа'} />
+        <Form>
+          <Form.Control
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            placeholder={'Введите название типа'}
+          />
+        </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="outlibe-danger" onClick={onHide}>
+        <Button variant="outline-danger" onClick={onHide}>
           Закрыть
         </Button>
-        <Button variant="outlibe-success" onClick={onHide}>
+        <Button variant="outline-success" onClick={addBrand}>
           Добавить
         </Button>
       </Modal.Footer>

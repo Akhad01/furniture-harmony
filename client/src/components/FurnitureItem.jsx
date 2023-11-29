@@ -6,9 +6,9 @@ import { FURNITURE_ROUTE } from '../utils/consts'
 const FurnitureItem = ({ furniture }) => {
   const navigate = useNavigate()
   return (
-    <Col onClick={() => navigate(FURNITURE_ROUTE + '/' + furniture.id)}>
+    <Col onClick={() => navigate(FURNITURE_ROUTE + '/' + 1)}>
       <Card style={{ cursor: 'pointer', border: 'light' }}>
-        <Card.Img src={furniture.img} />
+        <Card.Img src={process.env.REACT_APP_API_URL + furniture.img} />
         <Card.Body style={{ padding: 15 }}>
           <Card.Title>{furniture.name}</Card.Title>
           <hr />
