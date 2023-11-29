@@ -1,7 +1,7 @@
 import React from 'react'
-import { ListGroup } from 'react-bootstrap'
+import { Button, ListGroup } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { setSelectedType } from '../store/furnitureSlice'
+import { setReset, setSelectedType } from '../store/furnitureSlice'
 
 const TypeBar = () => {
   const dispatch = useDispatch()
@@ -20,6 +20,13 @@ const TypeBar = () => {
           {type.name}
         </ListGroup.Item>
       ))}
+      <Button
+        variant="outline-success"
+        onClick={() => dispatch(setReset())}
+        className="mt-3"
+      >
+        Сбросить
+      </Button>
     </ListGroup>
   )
 }

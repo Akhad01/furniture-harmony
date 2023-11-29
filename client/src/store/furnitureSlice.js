@@ -40,6 +40,11 @@ const furnitureSlice = createSlice({
     setTotalCount: (state, action) => {
       state.totalCount = action.payload
     },
+
+    setReset: (state, action) => {
+      state.selectedBrand = {}
+      state.selectedType = {}
+    },
   },
 })
 
@@ -51,5 +56,6 @@ export const {
   setSelectedBrand,
   setPage,
   setTotalCount,
+  setReset,
 } = furnitureSlice.actions
 export default furnitureSlice.reducer
