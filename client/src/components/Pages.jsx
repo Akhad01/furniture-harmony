@@ -17,7 +17,7 @@ const Pages = () => {
   }
 
   return (
-    <Pagination>
+    <Pagination className="mt-5 d-flex justify-content-center">
       {pages.map((page) => (
         <Pagination.Item
           key={page}

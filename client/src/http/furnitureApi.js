@@ -25,7 +25,7 @@ export const createFurniture = async (furniture) => {
   return data
 }
 
-export const fetchFurnitures = async (typeId, brandId, page, limit = 5) => {
+export const fetchFurnitures = async (typeId, brandId, page, limit = 10) => {
   const { data } = await $host.get('api/furniture', {
     params: { typeId, brandId, page, limit },
   })

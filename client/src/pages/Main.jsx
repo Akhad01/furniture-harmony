@@ -26,27 +26,29 @@ const Main = () => {
       dispatch(setFurnitures(data.rows))
       dispatch(setTotalCount(data.count))
     })
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
-    fetchFurnitures(selectedType.id, selectedBrand.id, page, 2).then((data) => {
+    fetchFurnitures(selectedType.id, selectedBrand.id, page, 3).then((data) => {
       dispatch(setFurnitures(data.rows))
       dispatch(setTotalCount(data.count))
     })
-  }, [page, selectedType, selectedBrand])
+  }, [page, selectedType, selectedBrand, dispatch])
 
   return (
     <Container>
-      <Row className="mt-2">
-        <Col md={3}>
-          <TypeBar />
-        </Col>
-        <Col md={9}>
-          <BrandBar />
-          <FurnitureList />
+      <div className="position-relative">
+        <Row className="mt-2">
+          <Col md={3}>
+            <TypeBar />
+          </Col>
+          <Col md={9}>
+            <BrandBar />
+            <FurnitureList />
+          </Col>
           <Pages />
-        </Col>
-      </Row>
+        </Row>
+      </div>
     </Container>
   )
 }
