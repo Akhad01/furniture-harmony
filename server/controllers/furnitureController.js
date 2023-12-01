@@ -50,7 +50,8 @@ class FurnitureContoller {
     if (brandId && !typeId) {
       furnitures = await Furniture.findAndCountAll({
         where: { brandId },
-        limit: offset,
+        limit,
+        offset,
       })
     }
     if (!brandId && typeId) {

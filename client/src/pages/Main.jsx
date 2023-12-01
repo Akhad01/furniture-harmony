@@ -26,7 +26,7 @@ const Main = () => {
       dispatch(setFurnitures(data.rows))
       dispatch(setTotalCount(data.count))
     })
-  }, [dispatch])
+  }, [])
 
   useEffect(() => {
     fetchFurnitures(selectedType.id, selectedBrand.id, page, 3).then((data) => {
