@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
-import { createBrand } from '../../http/furnitureApi'
+import { createBrand } from '../../store/brandSlice'
+import { useDispatch } from 'react-redux'
 
 const CreateBrand = ({ show, onHide }) => {
   const [value, setValue] = useState('')
+  const dispatch = useDispatch()
 
   const addBrand = () => {
-    createBrand({ name: value }).then((data) => {
-      setValue('')
-      onHide()
-    })
+    dispatch(createBrand({ name: value, setValue, onHide }))
   }
   return (
     <Modal show={show} onHide={onHide} centered>

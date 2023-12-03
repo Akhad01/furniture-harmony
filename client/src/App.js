@@ -17,7 +17,7 @@ function App() {
         dispatch(setIsAuth(true))
       })
       .finally(() => setLoading(false))
-  }, [dispatch])
+  }, [])
 
   if (loading) {
     return <Spinner animation={'grow'} />

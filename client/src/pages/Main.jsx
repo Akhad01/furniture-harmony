@@ -4,14 +4,10 @@ import TypeBar from '../components/TypeBar'
 import BrandBar from '../components/BrandBar'
 import FurnitureList from '../components/FurnitureList'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchBrands, fetchFurnitures, fetchTypes } from '../http/furnitureApi'
-import {
-  setBrands,
-  setFurnitures,
-  setTotalCount,
-  setTypes,
-} from '../store/furnitureSlice'
+import { fetchFurnitures } from '../store/furnitureSlice'
 import Pages from '../components/Pages'
+import { fetchTypes } from '../store/typeSlice'
+import { fetchBrands } from '../store/brandSlice'
 
 const Main = () => {
   const dispatch = useDispatch()
@@ -20,19 +16,16 @@ const Main = () => {
   const selectedBrand = useSelector((store) => store.furniture.selectedBrand)
 
   useEffect(() => {
-    fetchTypes().then((data) => dispatch(setTypes(data)))
-    fetchBrands().then((data) => dispatch(setBrands(data)))
-    fetchFurnitures(null, null, 1, 2).then((data) => {
-      dispatch(setFurnitures(data.rows))
-      dispatch(setTotalCount(data.count))
-    })
-  }, [])
-
-  useEffect(() => {
-    fetchFurnitures(selectedType.id, selectedBrand.id, page, 3).then((data) => {
-      dispatch(setFurnitures(data.rows))
-      dispatch(setTotalCount(data.count))
-    })
+    dispatch(fetchTypes())
+    dispatch(fetchBrands())
+    dispatch(
+      fetchFurnitures({
+        typeId: selectedType.id,
+        brandId: selectedBrand.id,
+        page: page,
+        limit: 3,
+      })
+    )
   }, [page, selectedType, selectedBrand, dispatch])
 
   return (

@@ -5,7 +5,7 @@ import { setReset, setSelectedType } from '../store/furnitureSlice'
 
 const TypeBar = () => {
   const dispatch = useDispatch()
-  const types = useSelector((store) => store.furniture.types)
+  const types = useSelector((store) => store.types.types)
   const selectedType = useSelector((store) => store.furniture.selectedType)
 
   return (

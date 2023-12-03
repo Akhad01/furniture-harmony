@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { Badge, Col, Container, Image, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import { fetchOneFurniture } from '../http/furnitureApi'
+import { fetchOneFurniture } from '../store/furnitureSlice'
+import { useDispatch } from 'react-redux'
 
 const FurniturePage = () => {
   const { id } = useParams()
   const [furniture, setFurniture] = useState({ info: [] })
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    fetchOneFurniture(id).then((data) => setFurniture(data))
+    dispatch(fetchOneFurniture({ id, setFurniture }))
   }, [])
 
   return (

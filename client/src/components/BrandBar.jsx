@@ -5,7 +5,7 @@ import { setSelectedBrand } from '../store/furnitureSlice'
 
 const BrandBar = () => {
   const dispatch = useDispatch()
-  const brands = useSelector((store) => store.furniture.brands)
+  const brands = useSelector((store) => store.brands.brands)
   const selectedBrand = useSelector((store) => store.furniture.selectedBrand)
   return (
     <Row xs="auto" className="d-flex">

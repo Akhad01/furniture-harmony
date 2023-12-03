@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { Form, Button } from 'react-bootstrap'
-import { createType } from '../../http/furnitureApi'
+import { createType } from '../../store/typeSlice'
+import { useDispatch } from 'react-redux'
 
 const CreateType = ({ show, onHide }) => {
   const [value, setValue] = useState('')
+  const dispatch = useDispatch()
 
   const addType = () => {
-    createType({ name: value }).then((data) => {
-      setValue('')
-      onHide()
-    })
+    dispatch(createType({ name: value, setValue, onHide }))
   }
 
   return (

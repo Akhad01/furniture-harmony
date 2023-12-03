@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Col, Dropdown, Form, Modal, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  setBrands,
-  setSelectedBrand,
-  setSelectedType,
-  setTypes,
-} from '../../store/furnitureSlice'
-import {
-  createFurniture,
-  fetchBrands,
-  fetchTypes,
-} from '../../http/furnitureApi'
+import { setSelectedBrand, setSelectedType } from '../../store/furnitureSlice'
+import { createFurniture } from '../../store/furnitureSlice'
+import { fetchTypes } from '../../store/typeSlice'
+import { fetchBrands } from '../../store/brandSlice'
 
 const CreateFurniture = ({ show, onHide }) => {
   const dispatch = useDispatch()
-  const types = useSelector((store) => store.furniture.types)
-  const brands = useSelector((store) => store.furniture.brands)
+  const types = useSelector((store) => store.types.types)
+  const brands = useSelector((store) => store.brands.brands)
 
   const [name, setName] = useState('')
   const [price, setPrice] = useState(0)
@@ -24,8 +17,8 @@ const CreateFurniture = ({ show, onHide }) => {
   const [info, setInfo] = useState([])
 
   useEffect(() => {
-    fetchTypes().then((data) => dispatch(setTypes(data)))
-    fetchBrands().then((data) => dispatch(setBrands(data)))
+    dispatch(fetchTypes())
+    dispatch(fetchBrands())
   }, [])
 
   const selectedType = useSelector((store) => store.furniture.selectedType)
@@ -54,7 +47,7 @@ const CreateFurniture = ({ show, onHide }) => {
     formData.append('brandId', selectedBrand.id)
     formData.append('typeId', selectedType.id)
     formData.append('info', JSON.stringify(info))
-    createFurniture(formData).then((data) => onHide())
+    dispatch(createFurniture({ formData, onHide }))
   }
 
   return (
