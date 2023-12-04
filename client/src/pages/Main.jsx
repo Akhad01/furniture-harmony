@@ -23,7 +23,7 @@ const Main = () => {
         typeId: selectedType.id,
         brandId: selectedBrand.id,
         page: page,
-        limit: 3,
+        limit: 8,
       })
     )
   }, [page, selectedType, selectedBrand, dispatch])

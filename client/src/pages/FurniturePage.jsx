@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { Badge, Col, Container, Image, Row } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
+import { Badge, Button, Col, Container, Image, Row } from 'react-bootstrap'
+import { useNavigate, useParams } from 'react-router-dom'
 import { fetchOneFurniture } from '../store/furnitureSlice'
 import { useDispatch } from 'react-redux'
+import { MAIN_ROUTE } from '../utils/consts'
 
 const FurniturePage = () => {
   const { id } = useParams()
   const [furniture, setFurniture] = useState({ info: [] })
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(fetchOneFurniture({ id, setFurniture }))
@@ -15,6 +17,7 @@ const FurniturePage = () => {
 
   return (
     <Container className="mt-3">
+      <Button onClick={() => navigate(MAIN_ROUTE)}>Назад</Button>
       <Row className="d-flex align-items-center">
         <Col style={{ padding: 80 }}>
           <h1 style={{ fontSize: 60 }} className="mb-3 text-dark">

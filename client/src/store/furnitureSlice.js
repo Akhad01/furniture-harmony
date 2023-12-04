@@ -7,7 +7,7 @@ const initialState = {
   selectedBrand: {},
   page: 1,
   totalCount: 0,
-  limit: 3,
+  limit: 8,
   error: null,
   status: 'idle',
 }

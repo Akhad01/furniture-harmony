@@ -24,8 +24,3 @@ const userSlice = createSlice({
 
 export const { setIsAuth, setUser, userLoggedOut } = userSlice.actions
 export default userSlice.reducer
-
-// export const logOut = () => (dispatch) => {
-//   localStorage.removeItem('token')
-//   dispatch(userLoggedOut())
-// }
