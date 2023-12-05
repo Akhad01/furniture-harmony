@@ -6,7 +6,7 @@ import Nav from 'react-bootstrap/Nav'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { ADMIN_ROUTE, LOGIN_ROUTE, MAIN_ROUTE } from '../utils/consts'
 import Button from 'react-bootstrap/Button'
-import { setIsAuth, setUser, userLoggedOut } from '../store/userSlice'
+import { userLoggedOut } from '../store/userSlice'
 
 const NavBar = () => {
   const dispatch = useDispatch()
@@ -24,16 +24,22 @@ const NavBar = () => {
           Furniture-Harmony
         </NavLink>
         <Navbar.Toggle aria-controls="navbarScroll" />
-        {isAuth ? (
-          <Navbar.Collapse style={{ flexGrow: 0 }} id="navbarScroll">
-            <Nav className="ml-auto" style={{ color: 'while' }} navbarScroll>
-              <Button
-                className="m-2"
-                variant="outline-light"
-                onClick={() => navigate(ADMIN_ROUTE)}
-              >
-                Админ панель
-              </Button>
+        <Navbar.Collapse
+          className="flex-grow-0"
+          style={{ flexGrow: 0 }}
+          id="navbarScroll"
+        >
+          {isAuth ? (
+            <Nav style={{ color: 'while' }} navbarScroll>
+              {isAuth && (
+                <Button
+                  className="m-2"
+                  variant="outline-light"
+                  onClick={() => navigate(ADMIN_ROUTE)}
+                >
+                  Админ панель
+                </Button>
+              )}
               <Button
                 className="m-2"
                 variant="info"
@@ -43,17 +49,17 @@ const NavBar = () => {
                 Выйти
               </Button>
             </Nav>
-          </Navbar.Collapse>
-        ) : (
-          <Navbar.Collapse id="navbarScroll">
+          ) : (
             <Nav className="ml-auto" style={{ color: 'while' }}>
-              <Button
-                className="m-2"
-                variant="outline-danger"
-                style={{ marginRight: 10 }}
-              >
-                Админ панель
-              </Button>
+              {isAuth && (
+                <Button
+                  className="m-2"
+                  variant="outline-danger"
+                  style={{ marginRight: 10 }}
+                >
+                  Админ панель
+                </Button>
+              )}
               <Button
                 className="m-2"
                 variant="outline-info"
@@ -62,8 +68,8 @@ const NavBar = () => {
                 Авторизация
               </Button>
             </Nav>
-          </Navbar.Collapse>
-        )}
+          )}
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   )

@@ -89,6 +89,7 @@ const furnitureSlice = createSlice({
       .addCase(fetchFurnitures.fulfilled, (state, actions) => {
         state.furnitures = actions.payload.rows
         state.totalCount = actions.payload.count
+        state.status = 'received'
       })
       .addCase(fetchFurnitures.rejected, (state, actions) => {
         state.status = 'rejected'

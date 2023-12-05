@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import AppRouter from './components/AppRouter'
 import NavBar from './components/NavBar'
 import { check } from './http/userApi'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setIsAuth, setUser } from './store/userSlice'
 import { Spinner } from 'react-bootstrap'
 

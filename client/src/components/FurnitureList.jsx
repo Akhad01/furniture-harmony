@@ -6,12 +6,19 @@ import FurnitureItem from './FurnitureItem'
 const FurnitureList = () => {
   const furnitures = useSelector((store) => store.furniture.furnitures)
 
+  const status = useSelector((store) => store.furniture.status)
+
   return (
-    <Row xs={1} xl={4} lg={3} sm={2} className="g-4 mt-3">
-      {furnitures.map((furniture) => (
-        <FurnitureItem key={furniture.id} furniture={furniture} />
-      ))}
-    </Row>
+    <>
+      {status === 'loading' && <h3>Loading...</h3>}
+      {status === 'received' && (
+        <Row xs={1} xl={4} lg={3} sm={2} className="g-4 mt-3">
+          {furnitures.map((furniture) => (
+            <FurnitureItem key={furniture.id} furniture={furniture} />
+          ))}
+        </Row>
+      )}
+    </>
   )
 }
 
