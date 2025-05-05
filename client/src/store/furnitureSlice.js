@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { $authHost, $host } from '../http'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { $authHost, $host } from '../http';
 
 const initialState = {
   furnitures: [],
@@ -10,7 +10,7 @@ const initialState = {
   limit: 8,
   error: null,
   status: 'idle',
-}
+};
 
 export const fetchFurnitures = createAsyncThunk(
   'furniture/fetch-furnitures',
@@ -18,89 +18,90 @@ export const fetchFurnitures = createAsyncThunk(
     try {
       const { data } = await $host.get('api/furniture', {
         params: { typeId, brandId, page, limit },
-      })
-      return data
+      });
+      return data;
     } catch (error) {
       if (error instanceof Error) {
-        return rejectWithValue(error.message)
+        return rejectWithValue(error.message);
       }
 
-      return rejectWithValue('Unknown error')
+      return rejectWithValue('Unknown error');
     }
   }
-)
+);
 
 export const fetchOneFurniture = createAsyncThunk(
   'furniture/fetch-one-furniture',
   async ({ id, setFurniture }, { rejectWithValue }) => {
     try {
-      const { data } = await $host.get('api/furniture/' + id)
-      setFurniture(data)
-      return data
+      const { data } = await $host.get('api/furniture/' + id);
+
+      setFurniture(data);
+      return data;
     } catch (error) {
       if (error instanceof Error) {
-        return rejectWithValue(error.message)
+        return rejectWithValue(error.message);
       }
 
-      return rejectWithValue('Unknown error')
+      return rejectWithValue('Unknown error');
     }
   }
-)
+);
 
 export const createFurniture = createAsyncThunk(
   'furniture/create-furniture',
   async ({ formData, onHide }, { rejectWithValue }) => {
     try {
-      const { data } = await $authHost.post('api/furniture', formData)
-      onHide()
-      return data
+      const { data } = await $authHost.post('api/furniture', formData);
+      onHide();
+      return data;
     } catch (error) {
       if (error instanceof Error) {
-        return rejectWithValue(error.message)
+        return rejectWithValue(error.message);
       }
 
-      return rejectWithValue('Unknown error')
+      return rejectWithValue('Unknown error');
     }
   }
-)
+);
 
 const furnitureSlice = createSlice({
   name: 'furniture',
   initialState,
   reducers: {
     setSelectedType: (state, action) => {
-      state.page = 1
-      state.selectedType = action.payload
+      state.page = 1;
+      state.selectedType = action.payload;
     },
     setSelectedBrand: (state, action) => {
-      state.page = 1
-      state.selectedBrand = action.payload
+      state.page = 1;
+      state.selectedBrand = action.payload;
     },
     setPage: (state, action) => {
-      state.page = action.payload
+      state.page = action.payload;
     },
     setReset: (state, action) => {
-      state.selectedBrand = {}
-      state.selectedType = {}
+      state.selectedBrand = {};
+      state.selectedType = {};
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchFurnitures.fulfilled, (state, actions) => {
-        state.furnitures = actions.payload.rows
-        state.totalCount = actions.payload.count
-        state.status = 'received'
+        state.furnitures = actions.payload.rows;
+        state.totalCount = actions.payload.count;
+        state.status = 'received';
       })
       .addCase(fetchFurnitures.rejected, (state, actions) => {
-        state.status = 'rejected'
-        state.error = actions.payload || 'Cannot load data'
+        state.status = 'rejected';
+        state.error = actions.payload || 'Cannot load data';
       })
       .addCase(fetchFurnitures.pending, (state) => {
-        state.status = 'loading'
-        state.error = null
-      })
+        state.status = 'loading';
+        state.error = null;
+      });
   },
-})
+});
 
 export const {
   setSelectedType,
@@ -109,5 +110,5 @@ export const {
   setPage,
   setTotalCount,
   setReset,
-} = furnitureSlice.actions
-export default furnitureSlice.reducer
+} = furnitureSlice.actions;
+export default furnitureSlice.reducer;
